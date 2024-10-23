@@ -18,7 +18,7 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getUser())
-  }, [])
+  }, [dispatch])
   return (
     <div className="">
       <BrowserRouter>

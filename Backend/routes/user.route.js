@@ -20,6 +20,6 @@ router.get("/logout", isAuthenticated, logout);
 router.put("/update/me", isAuthenticated, updateUser);
 router.put("/update/password", isAuthenticated, updatePassword);
 router.get("/me/portfolio", getuserPortfolio);
-router.post("/password/forgot", isAuthenticated, forgotPassword);
-router.put("/password/reset/:token", isAuthenticated, resetPassword);
+router.post("/password/forgot", forgotPassword);
+router.put("/password/reset/:token", resetPassword);
 export default router;

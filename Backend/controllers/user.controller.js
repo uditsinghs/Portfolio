@@ -325,7 +325,7 @@ export const forgotPassword = async (req, res) => {
       email: user.email,
       subject: "Personal Portfolio Dashboard Password Recovery",
       message,
-    });
+    }); 
 
     res.status(200).json({
       success: true,
@@ -334,7 +334,7 @@ export const forgotPassword = async (req, res) => {
   } catch (error) {
     console.log(error);
     // Reset user's resetPasswordToken and resetPasswordExpire in case of an error
-    const user = await User.findById(req.user?._id);
+    // const user = await User.findById(req.user?._id);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save({ validateBeforeSave: false });

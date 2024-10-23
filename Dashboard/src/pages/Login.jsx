@@ -7,7 +7,7 @@ import SpecialLoadingButton from "./sub-components/SpecialLoadingButton";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loading, isAuthenticated, error } = useSelector(
+  const { loading, isAuthenticated, error,message } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
@@ -20,10 +20,13 @@ const Login = () => {
       toast.error(error);
       dispatch(clearAllErrors());
     }
+    if(message){
+      toast.success(message)
+    }
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [dispatch, error, loading, isAuthenticated, navigate]);
+  }, [dispatch, error, loading, isAuthenticated, navigate,message]);
 
   return (
     <div
@@ -71,7 +74,7 @@ const Login = () => {
         />
       </label>
       <div className="flex justify-between items-center gap-8">
-        {loading ? <SpecialLoadingButton content={"Login In"}/> : <button onClick={handleLogin} type="submit" className="py-2 px-6 bg-blue-600 rounded-md mt-3 text-white ">
+        {loading ? <SpecialLoadingButton content={"Login In"} /> : <button onClick={handleLogin} type="submit" className="py-2 px-6 bg-blue-600 rounded-md mt-3 text-white ">
           Login
         </button>}
 

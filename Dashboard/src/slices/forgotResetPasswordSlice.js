@@ -8,7 +8,7 @@ const forgotResetSlice = createSlice({
     message: null,
   },
   reducers: {
-    forgotPasswordRequest(state, action) {
+    forgotPasswordRequest(state) {
       state.loading = true;
       state.error = null;
       state.message = null;
@@ -23,7 +23,7 @@ const forgotResetSlice = createSlice({
       state.error = action.payload;
       state.message = null;
     },
-    resetPasswordRequest(state, action) {
+    resetPasswordRequest(state) {
       state.loading = true;
       state.error = null;
       state.message = null;
@@ -39,14 +39,14 @@ const forgotResetSlice = createSlice({
       state.message = null;
     },
 
-    updateProfileResetAfterUpdate(state, action) {
+    updateProfileResetAfterUpdate(state) {
       state.message = null;
       state.error = null;
       state.isUpdated = false;
     },
-    clearErrors(state, action) {
+    clearErrors(state) {
       state.error = null;
-      state = state;
+    
     },
   },
 });
@@ -54,7 +54,7 @@ export const forgotPassword = (email) => async (dispatch) => {
   dispatch(forgotResetSlice.actions.forgotPasswordRequest());
   try {
     const { data } = await axios.post(
-      "http://localhost:3000/api/v1/user/password/forgot/",
+      "http://localhost:3000/api/v1/user/password/forgot",
       email,
       {
         withCredentials: true,
